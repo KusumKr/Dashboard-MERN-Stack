@@ -6,7 +6,14 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// CORS configuration - Allow all origins for Vercel deployments
+const corsOptions = {
+  origin: true, // Allow all origins (Vercel handles multiple domains)
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
